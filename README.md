@@ -1,43 +1,38 @@
-# cppAvroPhonetic
-[![Build Status](https://travis-ci.org/mominul/cppAvroPhonetic.svg?branch=master)](https://github.com/mominul/cppAvroPhonetic)
+# cppQtAvroPhonetic
 
-A C++ implementation of Avro Phonetic
+A C++ implementation of Avro Phonetic using Qt framework
 
 ### Overview
-**cppAvroPhonetic** implements the popular Bengali writing solution Avro Phonetic. cppAvroPhonetic has a header only class named **avrophonetic.hpp**. It is actually extracted from the parser written for **scim-avro** by Rifat Nabi.
+**cppQtAvroPhonetic** implements the popular Bengali writing solution Avro Phonetic. cppQtAvroPhonetic has a main class named **AvroPhonetic**. It is actually a shameless Qt translation of **cppAvroPhonetic** by Muhammad Mominul Huque.
 
 ### Features
 
 * **100%** compatible with **Avro Phonetic** implementation of **Avro Keyboard**.
 * **100%** compatible with Unicode specification version 8.0
-* Written in **C++11** and compatible with **newer** versions.
-* It is a **header only** implementation. So it can be integrated **easily**.
+* Written in **C++** using **Qt5** framework and should be compatible with **newer** versions.
+* It is a standalone implementation. So it can be run easily.
+* For integration to you application use the example
 
 ### Dependency
 
-**cppAvroPhonetic** or **avrophonetic.hpp** depends on **STL** and **C++11** specification. So you will need a C++11 compliant compiler to compile. C++11 is supported by these compilers:
-* GCC
-* Clang
-* Microsoft Visual C++
-
-Do not forget to set the necessary switches to enable C++11 (e.g., `-std=c++11` for GCC and Clang).
+**cppQtAvroPhonetic** or **AvroPhonetic** class depends on **Qt5** specification. So you will need Qt5 to compile.
 
 ### Example
 
-Working with cppAvroPhonetic is very easy. Here is an example:
+Working with cppQtAvroPhonetic is very easy. Here is an example:
 
-```cpp
-#include <iostream>
-#include <string>
-#include "avrophonetic.hpp"
+```cpp qt5
+#include <QDebug>
+#include <QString>
+#include "avrophonetic.h"
 
 int main()
 {
   // 'AvroPhonetic' is the converter class.
   AvroPhonetic avro;
-  std::string bangla;
-  bangla = avro.Convert("ami banglay gan gai"); // Outputs "আমি বাংলায় গান গাই"
-  std::cout << bangla << std::endl;
+  QString bangla;
+  bangla = avro.parse("ami banglay gan gai"); // Outputs "আমি বাংলায় গান গাই"
+  QDebug() << bangla;
   return 0;
 }
 ```
@@ -46,6 +41,7 @@ int main()
 
  - **Mehdi Hasan Khan** for originally developing and maintaining **Avro Phonetic**.
  - **Rifat Nabi** for his [scim-avro](https://code.google.com/p/scim-avro/)
+ - **Muhammad Mominul Huque** for his pure C++ translation [cppAvroPhonetic](https://github.com/mominul/cppAvroPhonetic)
 
 ### License
 <img align="right" src="http://opensource.org/trademarks/opensource/OSI-Approved-License-100x137.png">

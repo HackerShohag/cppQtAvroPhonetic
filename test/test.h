@@ -1,0 +1,462 @@
+/*
+ *  cppQTAvroPhonetic - C++ implementation of Avro Phonetic using Qt framework
+ *
+ *  Qt implementation
+ *  Copyright (C) 2023 Abdullah AL Shohag <HackerShohag@outlook.com>
+ *  
+ *  Original Author
+ *  Copyright (C) 2015 Muhammad Mominul Huque <nahidbinbaten1995@gmail.com>
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* Test program */
+
+#ifndef AVRO_PHONETIC_TEST
+#define AVRO_PHONETIC_TEST
+
+#include <QDebug>
+#include <QtGlobal>
+#include "../src/avrophonetic.h"
+
+void test()
+{
+  AvroPhonetic avro; // Avro PhoneticConverter
+  qDebug() << "[Test] Basic Test";
+  Q_ASSERT(avro.parse("bhl") == "ভ্ল");
+  Q_ASSERT(avro.parse("bj") == "ব্জ");
+  Q_ASSERT(avro.parse("bd") == "ব্দ");
+  Q_ASSERT(avro.parse("bb") == "ব্ব");
+  Q_ASSERT(avro.parse("bl") == "ব্ল");
+  Q_ASSERT(avro.parse("bh") == "ভ");
+  Q_ASSERT(avro.parse("vl") == "ভ্ল");
+  Q_ASSERT(avro.parse("b") == "ব");
+  Q_ASSERT(avro.parse("v") == "ভ");
+  Q_ASSERT(avro.parse("cNG") == "চ্ঞ");
+  Q_ASSERT(avro.parse("cch") == "চ্ছ");
+  Q_ASSERT(avro.parse("cc") == "চ্চ");
+  Q_ASSERT(avro.parse("ch") == "ছ");
+  Q_ASSERT(avro.parse("c") == "চ");
+  Q_ASSERT(avro.parse("dhn") == "ধ্ন");
+  Q_ASSERT(avro.parse("dhm") == "ধ্ম");
+  Q_ASSERT(avro.parse("dgh") == "দ্ঘ");
+  Q_ASSERT(avro.parse("ddh") == "দ্ধ");
+  Q_ASSERT(avro.parse("dbh") == "দ্ভ");
+  Q_ASSERT(avro.parse("dv") == "দ্ভ");
+  Q_ASSERT(avro.parse("dm") == "দ্ম");
+  Q_ASSERT(avro.parse("DD") == "ড্ড");
+  Q_ASSERT(avro.parse("Dh") == "ঢ");
+  Q_ASSERT(avro.parse("dh") == "ধ");
+  Q_ASSERT(avro.parse("dg") == "দ্গ");
+  Q_ASSERT(avro.parse("dd") == "দ্দ");
+  Q_ASSERT(avro.parse("D") == "ড");
+  Q_ASSERT(avro.parse("d") == "দ");
+  Q_ASSERT(avro.parse("...") == "...");
+  Q_ASSERT(avro.parse(".`") == ".");
+  Q_ASSERT(avro.parse("..") == "।।");
+  Q_ASSERT(avro.parse(".") == "।");
+  Q_ASSERT(avro.parse("ghn") == "ঘ্ন");
+  Q_ASSERT(avro.parse("Ghn") == "ঘ্ন");
+  Q_ASSERT(avro.parse("gdh") == "গ্ধ");
+  Q_ASSERT(avro.parse("gN") == "গ্ণ");
+  Q_ASSERT(avro.parse("GN") == "গ্ণ");
+  Q_ASSERT(avro.parse("gn") == "গ্ন");
+  Q_ASSERT(avro.parse("gm") == "গ্ম");
+  Q_ASSERT(avro.parse("Gm") == "গ্ম");
+  Q_ASSERT(avro.parse("gl") == "গ্ল");
+  Q_ASSERT(avro.parse("Gl") == "গ্ল");
+  Q_ASSERT(avro.parse("gg") == "জ্ঞ");
+  Q_ASSERT(avro.parse("GG") == "জ্ঞ");
+  Q_ASSERT(avro.parse("Gg") == "জ্ঞ");
+  Q_ASSERT(avro.parse("gG") == "জ্ঞ");
+  Q_ASSERT(avro.parse("gh") == "ঘ");
+  Q_ASSERT(avro.parse("Gh") == "ঘ");
+  Q_ASSERT(avro.parse("g") == "গ");
+  Q_ASSERT(avro.parse("hN") == "হ্ণ");
+  Q_ASSERT(avro.parse("hn") == "হ্ন");
+  Q_ASSERT(avro.parse("hm") == "হ্ম");
+  Q_ASSERT(avro.parse("hl") == "হ্ল");
+  Q_ASSERT(avro.parse("h") == "হ");
+  Q_ASSERT(avro.parse("jjh") == "জ্ঝ");
+  Q_ASSERT(avro.parse("jNG") == "জ্ঞ");
+  Q_ASSERT(avro.parse("jh") == "ঝ");
+  Q_ASSERT(avro.parse("jj") == "জ্জ");
+  Q_ASSERT(avro.parse("j") == "জ");
+  Q_ASSERT(avro.parse("J") == "জ");
+  Q_ASSERT(avro.parse("kkhN") == "ক্ষ্ণ");
+  Q_ASSERT(avro.parse("kShN") == "ক্ষ্ণ");
+  Q_ASSERT(avro.parse("kkhm") == "ক্ষ্ম");
+  Q_ASSERT(avro.parse("kShm") == "ক্ষ্ম");
+  Q_ASSERT(avro.parse("kxN") == "ক্ষ্ণ");
+  Q_ASSERT(avro.parse("kxm") == "ক্ষ্ম");
+  Q_ASSERT(avro.parse("kkh") == "ক্ষ");
+  Q_ASSERT(avro.parse("kSh") == "ক্ষ");
+  Q_ASSERT(avro.parse("ksh") == "কশ");
+  Q_ASSERT(avro.parse("kx") == "ক্ষ");
+  Q_ASSERT(avro.parse("kk") == "ক্ক");
+  Q_ASSERT(avro.parse("kT") == "ক্ট");
+  Q_ASSERT(avro.parse("kt") == "ক্ত");
+  Q_ASSERT(avro.parse("kl") == "ক্ল");
+  Q_ASSERT(avro.parse("ks") == "ক্স");
+  Q_ASSERT(avro.parse("kh") == "খ");
+  Q_ASSERT(avro.parse("k") == "ক");
+  Q_ASSERT(avro.parse("lbh") == "ল্ভ");
+  Q_ASSERT(avro.parse("ldh") == "ল্ধ");
+  Q_ASSERT(avro.parse("lkh") == "লখ");
+  Q_ASSERT(avro.parse("lgh") == "লঘ");
+  Q_ASSERT(avro.parse("lph") == "লফ");
+  Q_ASSERT(avro.parse("lk") == "ল্ক");
+  Q_ASSERT(avro.parse("lg") == "ল্গ");
+  Q_ASSERT(avro.parse("lT") == "ল্ট");
+  Q_ASSERT(avro.parse("lD") == "ল্ড");
+  Q_ASSERT(avro.parse("lp") == "ল্প");
+  Q_ASSERT(avro.parse("lv") == "ল্ভ");
+  Q_ASSERT(avro.parse("lm") == "ল্ম");
+  Q_ASSERT(avro.parse("ll") == "ল্ল");
+  Q_ASSERT(avro.parse("lb") == "ল্ব");
+  Q_ASSERT(avro.parse("l") == "ল");
+  Q_ASSERT(avro.parse("mth") == "ম্থ");
+  Q_ASSERT(avro.parse("mph") == "ম্ফ");
+  Q_ASSERT(avro.parse("mbh") == "ম্ভ");
+  Q_ASSERT(avro.parse("mpl") == "মপ্ল");
+  Q_ASSERT(avro.parse("mn") == "ম্ন");
+  Q_ASSERT(avro.parse("mp") == "ম্প");
+  Q_ASSERT(avro.parse("mv") == "ম্ভ");
+  Q_ASSERT(avro.parse("mm") == "ম্ম");
+  Q_ASSERT(avro.parse("ml") == "ম্ল");
+  Q_ASSERT(avro.parse("mb") == "ম্ব");
+  Q_ASSERT(avro.parse("mf") == "ম্ফ");
+  Q_ASSERT(avro.parse("m") == "ম");
+  Q_ASSERT(avro.parse("0") == "০");
+  Q_ASSERT(avro.parse("1") == "১");
+  Q_ASSERT(avro.parse("2") == "২");
+  Q_ASSERT(avro.parse("3") == "৩");
+  Q_ASSERT(avro.parse("4") == "৪");
+  Q_ASSERT(avro.parse("5") == "৫");
+  Q_ASSERT(avro.parse("6") == "৬");
+  Q_ASSERT(avro.parse("7") == "৭");
+  Q_ASSERT(avro.parse("8") == "৮");
+  Q_ASSERT(avro.parse("9") == "৯");
+  Q_ASSERT(avro.parse("NgkSh") == "ঙ্ক্ষ");
+  Q_ASSERT(avro.parse("Ngkkh") == "ঙ্ক্ষ");
+  Q_ASSERT(avro.parse("NGch") == "ঞ্ছ");
+  Q_ASSERT(avro.parse("Nggh") == "ঙ্ঘ");
+  Q_ASSERT(avro.parse("Ngkh") == "ঙ্খ");
+  Q_ASSERT(avro.parse("NGjh") == "ঞ্ঝ");
+  Q_ASSERT(avro.parse("ngOU") == "ঙ্গৌ");
+  Q_ASSERT(avro.parse("ngOI") == "ঙ্গৈ");
+  Q_ASSERT(avro.parse("Ngkx") == "ঙ্ক্ষ");
+  Q_ASSERT(avro.parse("NGc") == "ঞ্চ");
+  Q_ASSERT(avro.parse("nch") == "ঞ্ছ");
+  Q_ASSERT(avro.parse("njh") == "ঞ্ঝ");
+  Q_ASSERT(avro.parse("ngh") == "ঙ্ঘ");
+  Q_ASSERT(avro.parse("Ngk") == "ঙ্ক");
+  Q_ASSERT(avro.parse("Ngx") == "ঙ্ষ");
+  Q_ASSERT(avro.parse("Ngg") == "ঙ্গ");
+  Q_ASSERT(avro.parse("Ngm") == "ঙ্ম");
+  Q_ASSERT(avro.parse("NGj") == "ঞ্জ");
+  Q_ASSERT(avro.parse("ndh") == "ন্ধ");
+  Q_ASSERT(avro.parse("nTh") == "ন্ঠ");
+  Q_ASSERT(avro.parse("NTh") == "ণ্ঠ");
+  Q_ASSERT(avro.parse("nth") == "ন্থ");
+  Q_ASSERT(avro.parse("nkh") == "ঙ্খ");
+  Q_ASSERT(avro.parse("ngo") == "ঙ্গ");
+  Q_ASSERT(avro.parse("nga") == "ঙ্গা");
+  Q_ASSERT(avro.parse("ngi") == "ঙ্গি");
+  Q_ASSERT(avro.parse("ngI") == "ঙ্গী");
+  Q_ASSERT(avro.parse("ngu") == "ঙ্গু");
+  Q_ASSERT(avro.parse("ngU") == "ঙ্গূ");
+  Q_ASSERT(avro.parse("nge") == "ঙ্গে");
+  Q_ASSERT(avro.parse("ngO") == "ঙ্গো");
+  Q_ASSERT(avro.parse("NDh") == "ণ্ঢ");
+  Q_ASSERT(avro.parse("nsh") == "নশ");
+  Q_ASSERT(avro.parse("Ngr") == "ঙর");
+  Q_ASSERT(avro.parse("NGr") == "ঞর");
+  Q_ASSERT(avro.parse("ngr") == "ংর");
+  Q_ASSERT(avro.parse("nj") == "ঞ্জ");
+  Q_ASSERT(avro.parse("Ng") == "ঙ");
+  Q_ASSERT(avro.parse("NG") == "ঞ");
+  Q_ASSERT(avro.parse("nk") == "ঙ্ক");
+  Q_ASSERT(avro.parse("ng") == "ং");
+  Q_ASSERT(avro.parse("nn") == "ন্ন");
+  Q_ASSERT(avro.parse("NN") == "ণ্ণ");
+  Q_ASSERT(avro.parse("Nn") == "ণ্ন");
+  Q_ASSERT(avro.parse("nm") == "ন্ম");
+  Q_ASSERT(avro.parse("Nm") == "ণ্ম");
+  Q_ASSERT(avro.parse("nd") == "ন্দ");
+  Q_ASSERT(avro.parse("nT") == "ন্ট");
+  Q_ASSERT(avro.parse("NT") == "ণ্ট");
+  Q_ASSERT(avro.parse("nD") == "ন্ড");
+  Q_ASSERT(avro.parse("ND") == "ণ্ড");
+  Q_ASSERT(avro.parse("nt") == "ন্ত");
+  Q_ASSERT(avro.parse("ns") == "ন্স");
+  Q_ASSERT(avro.parse("nc") == "ঞ্চ");
+  Q_ASSERT(avro.parse("n") == "ন");
+  Q_ASSERT(avro.parse("N") == "ণ");
+  Q_ASSERT(avro.parse("OI`") == "ৈ");
+  Q_ASSERT(avro.parse("OU`") == "ৌ");
+  Q_ASSERT(avro.parse("O`") == "ো");
+  Q_ASSERT(avro.parse("OI") == "ঐ");
+  Q_ASSERT(avro.parse("kOI") == "কৈ");
+  Q_ASSERT(avro.parse(" OI") == " ঐ");
+  Q_ASSERT(avro.parse("(OI") == "(ঐ");
+  Q_ASSERT(avro.parse(".OI") == "।ঐ");
+  Q_ASSERT(avro.parse("OU") == "ঔ");
+  Q_ASSERT(avro.parse("kOU") == "কৌ");
+  Q_ASSERT(avro.parse(" OU") == " ঔ");
+  Q_ASSERT(avro.parse("-OU") == "-ঔ");
+  Q_ASSERT(avro.parse(",,OU") == "্‌ঔ");
+  Q_ASSERT(avro.parse("O") == "ও");
+  Q_ASSERT(avro.parse("pO") == "পো");
+  Q_ASSERT(avro.parse(" O") == " ও");
+  Q_ASSERT(avro.parse("iO") == "ইও");
+  Q_ASSERT(avro.parse("`O") == "ও");
+  Q_ASSERT(avro.parse("phl") == "ফ্ল");
+  Q_ASSERT(avro.parse("pT") == "প্ট");
+  Q_ASSERT(avro.parse("pt") == "প্ত");
+  Q_ASSERT(avro.parse("pn") == "প্ন");
+  Q_ASSERT(avro.parse("pp") == "প্প");
+  Q_ASSERT(avro.parse("pl") == "প্ল");
+  Q_ASSERT(avro.parse("ps") == "প্স");
+  Q_ASSERT(avro.parse("ph") == "ফ");
+  Q_ASSERT(avro.parse("fl") == "ফ্ল");
+  Q_ASSERT(avro.parse("f") == "ফ");
+  Q_ASSERT(avro.parse("p") == "প");
+  Q_ASSERT(avro.parse("rri`") == "ৃ");
+  Q_ASSERT(avro.parse("rri") == "ঋ");
+  Q_ASSERT(avro.parse("krri") == "কৃ");
+  Q_ASSERT(avro.parse("Irri") == "ঈঋ");
+  Q_ASSERT(avro.parse("^rri") == "ঁঋ");
+  Q_ASSERT(avro.parse(":rri") == "ঃঋ");
+  Q_ASSERT(avro.parse("rZ") == "র‍্য");
+  Q_ASSERT(avro.parse("krZ") == "ক্র্য");
+  // Q_ASSERT(avro.parse("rrZ")== "রর‍্য"); // TODO Check and correct
+  Q_ASSERT(avro.parse("yrZ") == "ইয়র‍্য");
+  Q_ASSERT(avro.parse("wrZ") == "ওর‍্য");
+  Q_ASSERT(avro.parse("xrZ") == "এক্সর‍্য");
+  Q_ASSERT(avro.parse("irZ") == "ইর‍্য");
+  Q_ASSERT(avro.parse("-rZ") == "-র‍্য");
+  Q_ASSERT(avro.parse("rrrZ") == "ররর‍্য");
+  Q_ASSERT(avro.parse("ry") == "র‍্য");
+  Q_ASSERT(avro.parse("qry") == "ক্র্য");
+  // Q_ASSERT(avro.parse("rry")== "রর‍্য"); // TODO Check and correct
+  Q_ASSERT(avro.parse("yry") == "ইয়র‍্য");
+  Q_ASSERT(avro.parse("wry") == "ওর‍্য");
+  Q_ASSERT(avro.parse("xry") == "এক্সর‍্য");
+  Q_ASSERT(avro.parse("0ry") == "০র‍্য");
+  Q_ASSERT(avro.parse("rrrry") == "রররর‍্য");
+  Q_ASSERT(avro.parse("Rry") == "ড়্র্য");
+  Q_ASSERT(avro.parse("rr") == "রর");
+  Q_ASSERT(avro.parse("arr") == "আরর");
+  Q_ASSERT(avro.parse("arrk") == "আর্ক");
+  Q_ASSERT(avro.parse("arra") == "আররা");
+  Q_ASSERT(avro.parse("arr") == "আরর");
+  // Q_ASSERT(avro.parse("arr!")== "আরর!"); // TODO Check and correct
+  Q_ASSERT(avro.parse("krr") == "ক্রর");
+  Q_ASSERT(avro.parse("krra") == "ক্ররা");
+  Q_ASSERT(avro.parse("Rg") == "ড়্গ");
+  Q_ASSERT(avro.parse("Rh") == "ঢ়");
+  Q_ASSERT(avro.parse("R") == "ড়");
+  Q_ASSERT(avro.parse("r") == "র");
+  Q_ASSERT(avro.parse("or") == "অর");
+  Q_ASSERT(avro.parse("mr") == "ম্র");
+  Q_ASSERT(avro.parse("1r") == "১র");
+  Q_ASSERT(avro.parse("+r") == "+র");
+  Q_ASSERT(avro.parse("rr") == "রর");
+  Q_ASSERT(avro.parse("yr") == "ইয়র");
+  Q_ASSERT(avro.parse("wr") == "ওর");
+  Q_ASSERT(avro.parse("xr") == "এক্সর");
+  Q_ASSERT(avro.parse("zr") == "য্র");
+  Q_ASSERT(avro.parse("mri") == "ম্রি");
+  Q_ASSERT(avro.parse("shch") == "শ্ছ");
+  Q_ASSERT(avro.parse("ShTh") == "ষ্ঠ");
+  Q_ASSERT(avro.parse("Shph") == "ষ্ফ");
+  Q_ASSERT(avro.parse("Sch") == "শ্ছ");
+  Q_ASSERT(avro.parse("skl") == "স্ক্ল");
+  Q_ASSERT(avro.parse("skh") == "স্খ");
+  Q_ASSERT(avro.parse("sth") == "স্থ");
+  Q_ASSERT(avro.parse("sph") == "স্ফ");
+  Q_ASSERT(avro.parse("shc") == "শ্চ");
+  Q_ASSERT(avro.parse("sht") == "শ্ত");
+  Q_ASSERT(avro.parse("shn") == "শ্ন");
+  Q_ASSERT(avro.parse("shm") == "শ্ম");
+  Q_ASSERT(avro.parse("shl") == "শ্ল");
+  Q_ASSERT(avro.parse("Shk") == "ষ্ক");
+  Q_ASSERT(avro.parse("ShT") == "ষ্ট");
+  Q_ASSERT(avro.parse("ShN") == "ষ্ণ");
+  Q_ASSERT(avro.parse("Shp") == "ষ্প");
+  Q_ASSERT(avro.parse("Shf") == "ষ্ফ");
+  Q_ASSERT(avro.parse("Shm") == "ষ্ম");
+  Q_ASSERT(avro.parse("spl") == "স্প্ল");
+  Q_ASSERT(avro.parse("sk") == "স্ক");
+  Q_ASSERT(avro.parse("Sc") == "শ্চ");
+  Q_ASSERT(avro.parse("sT") == "স্ট");
+  Q_ASSERT(avro.parse("st") == "স্ত");
+  Q_ASSERT(avro.parse("sn") == "স্ন");
+  Q_ASSERT(avro.parse("sp") == "স্প");
+  Q_ASSERT(avro.parse("sf") == "স্ফ");
+  Q_ASSERT(avro.parse("sm") == "স্ম");
+  Q_ASSERT(avro.parse("sl") == "স্ল");
+  Q_ASSERT(avro.parse("sh") == "শ");
+  Q_ASSERT(avro.parse("Sc") == "শ্চ");
+  Q_ASSERT(avro.parse("St") == "শ্ত");
+  Q_ASSERT(avro.parse("Sn") == "শ্ন");
+  Q_ASSERT(avro.parse("Sm") == "শ্ম");
+  Q_ASSERT(avro.parse("Sl") == "শ্ল");
+  Q_ASSERT(avro.parse("Sh") == "ষ");
+  Q_ASSERT(avro.parse("s") == "স");
+  Q_ASSERT(avro.parse("S") == "শ");
+  Q_ASSERT(avro.parse("oo") == "উ");
+  Q_ASSERT(avro.parse("OO") == "ওও");
+  // Q_ASSERT(avro.parse("oo`")== "ু"); // TODO check and correct
+  Q_ASSERT(avro.parse("koo") == "কু");
+  Q_ASSERT(avro.parse("ooo") == "উঅ");
+  Q_ASSERT(avro.parse("!oo") == "!উ");
+  Q_ASSERT(avro.parse("!ooo") == "!উঅ");
+  Q_ASSERT(avro.parse("aoo") == "আউ");
+  Q_ASSERT(avro.parse("oop") == "উপ");
+  Q_ASSERT(avro.parse("ooo`") == "উ");
+  Q_ASSERT("" == avro.parse("o`"));
+  Q_ASSERT(avro.parse("oZ") == "অ্য");
+  Q_ASSERT(avro.parse("oY") == "অয়");
+  Q_ASSERT(avro.parse("o") == "অ");
+  Q_ASSERT(avro.parse("!o") == "!অ");
+  Q_ASSERT(avro.parse("^o") == "ঁঅ");
+  Q_ASSERT(avro.parse("*o") == "*অ");
+  Q_ASSERT(avro.parse("io") == "ইও");
+  Q_ASSERT(avro.parse("yo") == "ইয়");
+  Q_ASSERT(avro.parse("no") == "ন");
+  Q_ASSERT(avro.parse("tth") == "ত্থ");
+  Q_ASSERT(avro.parse("t``") == "ৎ");
+  Q_ASSERT(avro.parse("`t``") == "ৎ");
+  Q_ASSERT(avro.parse("t``t``") == "ৎৎ");
+  Q_ASSERT(avro.parse("t```") == "ৎ");
+  Q_ASSERT(avro.parse("TT") == "ট্ট");
+  Q_ASSERT(avro.parse("Tm") == "ট্ম");
+  Q_ASSERT(avro.parse("Th") == "ঠ");
+  Q_ASSERT(avro.parse("tn") == "ত্ন");
+  Q_ASSERT(avro.parse("tm") == "ত্ম");
+  Q_ASSERT(avro.parse("th") == "থ");
+  Q_ASSERT(avro.parse("tt") == "ত্ত");
+  Q_ASSERT(avro.parse("T") == "ট");
+  Q_ASSERT(avro.parse("t") == "ত");
+  // Q_ASSERT(avro.parse("aZ")== "অ্যা");
+  Q_ASSERT(avro.parse("aaZ") == "আঅ্যা");
+  // Q_ASSERT(avro.parse("AZ")== "অ্যা");
+  // Q_ASSERT(avro.parse("a`")== "া");
+  Q_ASSERT(avro.parse("a``") == "া");
+  Q_ASSERT(avro.parse("ka`") == "কা");
+  // Q_ASSERT(avro.parse("A`")== "া");
+  Q_ASSERT(avro.parse("a") == "আ");
+  Q_ASSERT(avro.parse("`a") == "আ");
+  Q_ASSERT(avro.parse("k`a") == "কআ");
+  Q_ASSERT(avro.parse("ia") == "ইয়া");
+  Q_ASSERT(avro.parse("aaaa`") == "আআআা");
+  Q_ASSERT(avro.parse("i`") == "ি");
+  Q_ASSERT(avro.parse("i") == "ই");
+  Q_ASSERT(avro.parse("`i") == "ই");
+  Q_ASSERT(avro.parse("hi") == "হি");
+  Q_ASSERT(avro.parse("ih") == "ইহ");
+  Q_ASSERT(avro.parse("i`h") == "িহ");
+  Q_ASSERT(avro.parse("I`") == "ী");
+  Q_ASSERT(avro.parse("I") == "ঈ");
+  Q_ASSERT(avro.parse("cI") == "চী");
+  Q_ASSERT(avro.parse("Ix") == "ঈক্স");
+  Q_ASSERT(avro.parse("II") == "ঈঈ");
+  Q_ASSERT(avro.parse("0I") == "০ঈ");
+  Q_ASSERT(avro.parse("oI") == "অঈ");
+  Q_ASSERT(avro.parse("u`") == "ু");
+  Q_ASSERT(avro.parse("u") == "উ");
+  Q_ASSERT(avro.parse("ku") == "কু");
+  Q_ASSERT(avro.parse("uk") == "উক");
+  Q_ASSERT(avro.parse("uu") == "উউ");
+  Q_ASSERT(avro.parse("iu") == "ইউ");
+  Q_ASSERT(avro.parse("&u") == "&উ");
+  Q_ASSERT(avro.parse("u&") == "উ&");
+  Q_ASSERT(avro.parse("U`") == "ূ");
+  Q_ASSERT(avro.parse("U") == "ঊ");
+  Q_ASSERT(avro.parse("yU") == "ইয়ূ");
+  Q_ASSERT(avro.parse("Uy") == "ঊয়");
+  Q_ASSERT(avro.parse("^U") == "ঁঊ");
+  Q_ASSERT(avro.parse("U^") == "ঊঁ");
+  Q_ASSERT(avro.parse("EE") == "ঈ");
+  Q_ASSERT(avro.parse("ee") == "ঈ");
+  Q_ASSERT(avro.parse("Ee") == "ঈ");
+  Q_ASSERT(avro.parse("eE") == "ঈ");
+  // Q_ASSERT(avro.parse("ee`")== "ী");
+  Q_ASSERT(avro.parse("kee") == "কী");
+  Q_ASSERT(avro.parse("eek") == "ঈক");
+  Q_ASSERT(avro.parse("0ee") == "০ঈ");
+  Q_ASSERT(avro.parse("ee8") == "ঈ৮");
+  Q_ASSERT(avro.parse("(ee)") == "(ঈ)");
+  Q_ASSERT(avro.parse("e`") == "ে");
+  Q_ASSERT(avro.parse("e") == "এ");
+  Q_ASSERT(avro.parse("ke") == "কে");
+  Q_ASSERT(avro.parse("we") == "ওয়ে");
+  Q_ASSERT(avro.parse("#e#") == "#এ#");
+  Q_ASSERT(avro.parse("`e`") == "ে");
+  Q_ASSERT(avro.parse("z") == "য");
+  Q_ASSERT(avro.parse("Z") == "্য");
+  Q_ASSERT(avro.parse("rZ") == "র‍্য");
+  Q_ASSERT(avro.parse("kZS") == "ক্যশ");
+  Q_ASSERT(avro.parse("y") == "ইয়");
+  Q_ASSERT(avro.parse("oy") == "অয়");
+  Q_ASSERT(avro.parse("ky") == "ক্য");
+  Q_ASSERT(avro.parse("ya") == "ইয়া");
+  Q_ASSERT(avro.parse("yaa") == "ইয়াআ");
+  Q_ASSERT(avro.parse("Y") == "য়");
+  Q_ASSERT(avro.parse("YY") == "য়য়");
+  Q_ASSERT(avro.parse("iY") == "ইয়");
+  Q_ASSERT(avro.parse("kY") == "কয়");
+  Q_ASSERT(avro.parse("q") == "ক");
+  Q_ASSERT(avro.parse("Q") == "ক");
+  Q_ASSERT(avro.parse("w") == "ও");
+  Q_ASSERT(avro.parse("wa") == "ওয়া");
+  Q_ASSERT(avro.parse("-wa-") == "-ওয়া-");
+  Q_ASSERT(avro.parse("woo") == "ওয়ু");
+  Q_ASSERT(avro.parse("wre") == "ওরে");
+  Q_ASSERT(avro.parse("kw") == "ক্ব");
+  Q_ASSERT(avro.parse("x") == "এক্স");
+  Q_ASSERT(avro.parse("ex") == "এক্স");
+  Q_ASSERT(avro.parse("bx") == "বক্স");
+  Q_ASSERT(avro.parse(":`") == ":");
+  Q_ASSERT(avro.parse(":") == "ঃ");
+  Q_ASSERT(avro.parse("^`") == "^");
+  Q_ASSERT(avro.parse("^") == "ঁ");
+  Q_ASSERT(avro.parse("k^") == "কঁ");
+  Q_ASSERT(avro.parse("k^i") == "কঁই");
+  Q_ASSERT(avro.parse("ki^") == "কিঁ");
+  Q_ASSERT(avro.parse(",,") == "্‌");
+  Q_ASSERT(avro.parse(",,,") == "্‌,");
+  Q_ASSERT(avro.parse(",,`,") == "্‌,");
+  Q_ASSERT(avro.parse("`,,") == "্‌");
+  Q_ASSERT(avro.parse(",`,") == ",,");
+  Q_ASSERT(avro.parse("$") == "৳");
+  Q_ASSERT("" == avro.parse("`"));
+  Q_ASSERT(avro.parse("bdh") == "ব্ধ");
+  qDebug() << "[Pass] Basic Test";
+
+  qDebug() << "[Test] Other Test";
+  Q_ASSERT(avro.parse("!") == "!");
+  qDebug() << "[Pass] Other Test";
+
+  qDebug() << "[Test] Sentence Test";
+  Q_ASSERT(avro.parse("ami banglay gan gai") == "আমি বাংলায় গান গাই");
+  Q_ASSERT(avro.parse("amader valObasa hoye gel ghas, kheye gel goru ar diye gelo ba^sh") == "আমাদের ভালোবাসা হয়ে গেল ঘাস, খেয়ে গেল গরু আর দিয়ে গেল বাঁশ");
+  qDebug() << "[Pass] Sentence Test";
+
+  return;
+}
+
+#endif // AVRO_PHONETIC_TEST
