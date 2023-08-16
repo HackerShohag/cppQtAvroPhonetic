@@ -28,11 +28,11 @@
 
 #include <QDebug>
 #include <QtGlobal>
-#include "../src/avrophonetic.h"
+#include "../src/libengine/phoneticparser.h"
 
 void test()
 {
-  AvroPhonetic avro; // Avro PhoneticConverter
+  PhoneticParser avro; // Avro PhoneticConverter
   qDebug() << "[Test] Basic Test";
   Q_ASSERT(avro.parse("bhl") == "ভ্ল");
   Q_ASSERT(avro.parse("bj") == "ব্জ");
