@@ -18,7 +18,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "avrophonetic.h"
+
+#include "libengine/phoneticparser.h"
+#include "libengine/PhoneticSuggestion.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -34,11 +37,11 @@ public:
 
 private slots:
     void on_convertButton_clicked();
-
     void on_inputText_returnPressed();
 
 private:
+    PhoneticParser parser;
+    PhoneticSuggestion suggestions;
     Ui::MainWindow *ui;
-    AvroPhonetic avroPhonetic;
 };
 #endif // MAINWINDOW_H

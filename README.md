@@ -1,5 +1,7 @@
 # cppQtAvroPhonetic
 
+> :warning: **The original library was replaced with linengine**: To use the following examples, use the header in the test directory.
+
 A C++ implementation of Avro Phonetic using Qt framework
 
 ### Overview

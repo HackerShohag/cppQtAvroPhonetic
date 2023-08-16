@@ -29,11 +29,17 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
 void MainWindow::on_convertButton_clicked()
 {
     QString input = ui->inputText->text();
-    ui->outputText->setPlainText(avroPhonetic.parse(input));
+
+    ui->outputText->setPlainText("Current Word: ");
+    ui->outputText->appendPlainText(parser.parse(input));
+    ui->outputText->appendPlainText("\n Suggested Words: ");
+    ui->outputText->appendPlainText(suggestions.Suggest(input).join(", "));
+
+    qDebug() << suggestions.Suggest(input);
+    qDebug() << parser.parse(input);
 }
 
 

@@ -9,23 +9,41 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Core)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Core)
 
 set(PROJECT_SOURCES
         main.cpp
         src/mainwindow.cpp
         src/mainwindow.h
-        src/avrophonetic.h
-        src/avrophonetic.cpp
         src/mainwindow.ui
+        src/libengine/phoneticparser.cpp
+        src/libengine/phoneticparser.h
+        src/libengine/regexparser.cpp
+        src/libengine/regexparser.h
+        src/libengine/AutoCorrect.cpp
+        src/libengine/AutoCorrect.h
+        src/libengine/Database.cpp
+        src/libengine/Database.h
+        src/libengine/PhoneticSuggestion.cpp
+        src/libengine/PhoneticSuggestion.h
+        src/libengine/FileSystem.cpp
+        src/libengine/FileSystem.h
+        src/libengine/Log.h
+        src/libengine/qlevenshtein.hpp
 )
+
+# Set the subdirectory name
+set(SUBDIR_NAME "src/data/")
+
+# Get the list of source files from the subdirectory
+file(GLOB SUBDIR_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIR_NAME}/*.*")
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(AvroTest
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        test/test.h
+        ${SUBDIR_SOURCES}
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET AvroTest APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -35,17 +53,19 @@ else()
     if(ANDROID)
         add_library(AvroTest SHARED
             ${PROJECT_SOURCES}
+            ${SUBDIR_SOURCES}
         )
 # Define properties for Android with Qt 5 after find_package() calls as:
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
         add_executable(AvroTest
             ${PROJECT_SOURCES}
+            ${SUBDIR_SOURCES}
         )
     endif()
 endif()
 
-target_link_libraries(AvroTest PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(AvroTest PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Core)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
