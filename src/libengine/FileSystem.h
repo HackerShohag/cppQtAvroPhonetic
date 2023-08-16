@@ -27,6 +27,4 @@ QString SuffixDictPath();
 QString RegexDictPath();
 QString AutoCorrectFilePath();
 
-//QString pathPrefix = "$${LOMIRI_KEYBOARD_LIB_DIR}/bn-avro/";
-
 #endif // FILE_SYSTEM_H

@@ -19,21 +19,21 @@
 #include "FileSystem.h"
 
 QString AvroPhoneticLayoutPath() {
-    return "data/avrophonetic.json";
+    return "share/data/avrophonetic.json";
 }
 
 QString DictionaryPath() {
-    return "data/dictionary.json";
+    return "share/data/dictionary.json";
 }
 
 QString SuffixDictPath() {
-    return "data/suffix.json";
+    return "share/data/suffix.json";
 }
 
 QString RegexDictPath() {
-    return "data/regex.json";
+    return "share/data/regex.json";
 }
 
 QString AutoCorrectFilePath() {
-    return "data/autocorrect.json";
+    return "share/data/autocorrect.json";
 }
